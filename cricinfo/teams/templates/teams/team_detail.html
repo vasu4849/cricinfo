@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title_block %}
+    <title>Team detail</title>
+{% endblock %}
+{% block body_block %}
+    <div class="d-block p-4 bg-info text-white">Team Details...</div><br/>
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <h4>Name: {{object.name}}</h4>
+        <h4>Country: {{object.country}}</h4>
+        <h4>Logo:
+            <img src="{{MEDIA_ROOT}}/{{ object.logo }}" class="img-thumbnail rounded float-center" alt="..."  height="45" width="45" />
+        </h4>
+    </div>
+
+    <div class="alert alert-info" role="alert">{{object.name}} squad..
+        <h1></h1>
+        {% for player in player_list %}
+            <a href="{% url 'player:player_detail' player.id %}" class="text-primary">Name: {{player.firstname}} {{player.lastname}}</a><br/>
+        {% endfor %}
+    </div>
+    <!--
+        <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        </div>
+    -->
+{% endblock %}

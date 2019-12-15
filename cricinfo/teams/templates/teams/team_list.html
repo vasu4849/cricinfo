@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title_block %}
+    <title>Teams list</title>
+{% endblock %}
+
+{% block body_block %}
+
+
+    <h1>List of Teams..</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Logo</th>
+                <th scope="col">Team</th>
+                <th scope="col">Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for team in object_list %}
+                <tr>
+                    <td>
+                        <!--<img src="{{team.logo}}" class="img-thumbnail rounded float-left" alt="..."  height="50" width="50" />-->
+                        <img src="{{MEDIA_ROOT}}/{{team.logo}}" class="img-thumbnail rounded float-left" alt="..."  height="50" width="50" />
+                    </td>
+                    <td><a href="{% url 'teams:team_detail' team.id %}">{{ team.name }}</a></td>
+                    <td>{{ team.country }}</td>
+                    <!--
+                    <td>
+                        <a  href="{% url 'teams:team_detail'  team.id  %}">details</a>
+                        <a  href="{% url 'teams:team_update'  team.id  %}">edit</a>
+                        <a  href="{% url 'teams:team_delete'  team.id  %}">delete</a>
+                    </td>
+                    -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

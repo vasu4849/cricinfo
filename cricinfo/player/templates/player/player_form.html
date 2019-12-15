@@ -1,0 +1,17 @@
+{% extends 'teams/base.html' %}
+{% block title_block %}
+    <title>Add Player</title>
+{% endblock %}
+{% block body_block %}
+    {% if not form.instance.pk %}
+        <h1>Fill the form to add a new Player..</h1>
+    {% else %}
+        <h1>Update the Player details..</h1>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit">
+    </form>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title_block %}
+    <title>Player detail</title>
+{% endblock %}
+{% block body_block %}
+    <h1>Player Details..</h1><br/>
+
+        <p>First Name: {{player.firstname}}</p>
+        <p>Last Name: {{player.lastname}}</p>
+        <p>Skill: {{player.skill}}</p>
+        <p>Jersey No: {{player.jerseyno}}</p>
+        <p>State: {{player.state}}</p>
+        <p>Board:
+            <a href="{% url 'teams:team_detail' player.team.id %}">{{player.team}}</a>
+        </p>
+        <p>Profile:
+            <img src="{{MEDIA_ROOT}}/{{ player.profile }}" class="img-thumbnail rounded float-center" alt="..."  height="25" width="25" />
+        </p>
+
+{% endblock %}
