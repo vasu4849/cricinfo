@@ -4,3 +4,6 @@
 .idea
 myenv
 .vscode
+cricinfo/__pycache__
+matches/__pycache__
+player/__pycache__

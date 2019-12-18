@@ -22,5 +22,6 @@ class PlayerUpdate(UpdateView):
     model = Player
 
 
+
 class PlayerDelete(DeleteView):
     model = Player

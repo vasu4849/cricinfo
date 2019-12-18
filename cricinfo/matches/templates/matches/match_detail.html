@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title_block %}
+    <title>Match detail</title>
+{% endblock %}
+{% block body_block %}
+    <div class="d-block p-4 bg-info text-white">Match Details...</div><br/>
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <p class="text-center display-4">{{match.first_team}}</p>
+        <h1 class="text-center">Vs</h1>
+        <p class="text-center display-4">{{match.second_team}}</p>
+        <p class="text-center">{{match.get_status_display}}</p>
+    </div>
+{% endblock %}

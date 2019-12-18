@@ -1,0 +1,19 @@
+{% extends 'teams/base.html' %}
+{% block title_block %}
+    <title>Update Match details..</title>
+{% endblock %}
+
+{% block body_block %}
+    <h1>Update the match details..</h1><br/>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="col-md-10 text-center">
+            <button class="btn btn-warning" value="submit">Update</button>
+            <a class="btn btn-warning" href="{% url 'match:match_list' %}">Cancel</a>
+
+        </div>
+    </form>
+
+{% endblock %}

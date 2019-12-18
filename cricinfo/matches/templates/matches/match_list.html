@@ -1,0 +1,40 @@
+{% extends 'teams/base.html' %}
+{% block title_block %}
+    <title>Match details..</title>
+{% endblock %}
+{% block body_block %}
+    <h1>List of Matches..</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Match No.</th>
+                    <th scope="col">Team1</th>
+                    <th scope="col">Team2</th>
+                    <th scope="col">Start time</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Result</th>
+                </tr>
+            </thead>
+        <tbody>
+            {% for match in match_list %}
+                <tr>
+                    <td>{{ match.id}}</td>
+                    <td>{{ match.first_team}}</td>
+                    <td>{{ match.second_team}}</td>
+                    <td>{{ match.start_time}}</td>
+                    <td>{{ match.get_status_display}}</td>
+                    <td>Winner-{{ match.result}}</td>
+                    <td>
+                        <a class="btn btn-warning" href="{% url 'match:match_update' match.id %}">Update Match</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="{% url 'match:match_delete' match.id %}">Delete Match</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

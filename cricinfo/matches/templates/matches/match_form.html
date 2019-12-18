@@ -1,0 +1,48 @@
+{% extends 'teams/base.html' %}
+{% block title_block %}
+    <title>Schedule Match</title>
+{% endblock %}
+{% block body_block %}
+    {% if not form.instance.pk %}
+        <h1>Start a match</h1><br/>
+    {% else %}
+        <h1>Update the match details..</h1><br/>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_first_team">Team 1:  </label>
+            <select name="first_team" class="mdb-select md-form">
+                <option value="" disabled selected>Choose a Team</option>
+                {% for teams in form.first_team %}
+                    {{teams}}
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="id_second_team">Team 2: </label>
+            <select name="second_team" class="mdb-select md-form">
+                <option value="" disabled selected>Choose another Team</option>
+                {% for teams in form.second_team %}
+                    {{teams}}
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="id_status">Status:  </label>
+            <select name="status" class="mdb-select md-form">
+                <option value="" disabled selected>Choose your option</option>
+                {% for status in form.status %}
+                    {{status}}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-10 text-center">
+            <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+        </div>
+    </form>
+
+{% endblock %}
