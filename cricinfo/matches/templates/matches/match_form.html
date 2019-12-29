@@ -8,12 +8,19 @@
     {% else %}
         <h1>Update the match details..</h1><br/>
     {% endif %}
+    {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{form.non_field_errors}}
+        </div>
+    {% endif %}
+    <br/>
+
     <form method="post">
         {% csrf_token %}
         <div class="form-group">
-            <label for="id_first_team">Team 1:  </label>
-            <select name="first_team" class="mdb-select md-form">
-                <option value="" disabled selected>Choose a Team</option>
+            <label for="label_first_team">Team 1:</label>
+            <select class="form-control" id="id_first_team" name="first_team">
+              <option value="" disabled selected>Choose a Team</option>
                 {% for teams in form.first_team %}
                     {{teams}}
                 {% endfor %}
@@ -21,8 +28,8 @@
         </div>
 
         <div class="form-group">
-            <label for="id_second_team">Team 2: </label>
-            <select name="second_team" class="mdb-select md-form">
+            <label for="label_second_team">Team 2: </label>
+            <select name="second_team" id="id_second_team" class="form-control">
                 <option value="" disabled selected>Choose another Team</option>
                 {% for teams in form.second_team %}
                     {{teams}}
@@ -30,19 +37,18 @@
             </select>
         </div>
 
-
         <div class="form-group">
-            <label for="id_status">Status:  </label>
-            <select name="status" class="mdb-select md-form">
-                <option value="" disabled selected>Choose your option</option>
-                {% for status in form.status %}
-                    {{status}}
-                {% endfor %}
-            </select>
+            <label for="label_status">Status:  </label>
+                <select name="result" class="form-control">
+                    <option value="" disabled selected>Choose your option</option>
+                        {% for status in form.result %}
+                            {{status}}
+                        {% endfor %}
+                </select>
         </div>
         <div class="col-md-10 text-center">
             <button type="submit" class="btn btn-primary" value="submit">Submit</button>
         </div>
-    </form>
+</form>
 
 {% endblock %}

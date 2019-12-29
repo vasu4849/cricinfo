@@ -4,16 +4,87 @@
 {% endblock %}
 
 {% block body_block %}
-    <h1>Update the match details..</h1><br/>
 
+    <h1>Update the match details..</h1><br/>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        {{ form.first_team.label_tag }}
+        {{ form.first_team }}
+        <br/>
+        <br/>
+        {{ form.second_team.label_tag }}
+        {{ form.second_team }}
+        <br/>
+        <br/>
+
+        <label for="id_status">Result:  </label>
+        <select id="status" name="result" class="mdb-select md-form">
+            <option value="" disabled selected>Choose your option</option>
+            {% for status in form.result %}
+                {{status}}
+            {% endfor %}
+            <!--
+            <option value="{{form.instance.first_team}}">{{form.instance.first_team}} Won</option>
+            <option value="{{form.instance.second_team}}">{{form.instance.second_team}} Won</option>
+            -->
+        </select>
+
         <div class="col-md-10 text-center">
             <button class="btn btn-warning" value="submit">Update</button>
             <a class="btn btn-warning" href="{% url 'match:match_list' %}">Cancel</a>
-
         </div>
     </form>
+
+    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+              <div class="col-12">
+                <h5 class="modal-title text-center text-danger" id="exampleModalLabel">Alert</h5>
+              </div>
+          </div>
+          <div class="modal-body">
+
+          </div>
+          <div class="modal-footer text-center">
+              <div class="col-12">
+                <button id="ok" type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script type="text/javascript">
+    $("select#status").change(function(event) {
+        DEFAULT_OPTIONS = ['NOT STARTED', 'ON GOING', 'ABANDONED']
+        valueSelected = this.value;
+        first_team_selected = $("select#id_first_team").children("option:selected").text()
+        second_team_selected = $("select#id_second_team").children("option:selected").text()
+        incorrect_result = true
+        if((valueSelected != first_team_selected) && (valueSelected != second_team_selected)) {
+            for(i in DEFAULT_OPTIONS) {
+                if(DEFAULT_OPTIONS[i]==valueSelected){
+                    incorrect_result = false
+                }
+            }
+        }
+        else {
+            incorrect_result = false
+        }
+        if(incorrect_result) {
+            errMsg = "You have selected inappropriate result. Please select a valid one";
+            $(".modal-body").text(errMsg);
+            $('#myModal').show();
+            $('#myModal').trigger('focus');
+            this.value = '';
+        }
+    })
+
+    $("#ok").click(function() {
+        $('#myModal').hide();
+    })
+</script>
 
 {% endblock %}
