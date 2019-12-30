@@ -14,35 +14,26 @@
             color: white;
         }
     </style>
+
 </head>
 <body>
 
     <nav class="navbar navbar-light" style="background-color: #095790;">
-        <ul class="nav nav-pills justify-content-center">
+        <ul class="nav justify-content-center">
           <li class="nav-item">
               <img class="nav-link" src="{% static 'sports_cricket.png' %}" alt="CricInfo">
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{% url 'teams:team_list' %}" role="button" aria-haspopup="true" aria-expanded="false">Teams</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="{% url 'teams:team_create' %}">Add a Team</a>
-              <a class="dropdown-item" href="{% url 'teams:team_list' %}">List Teams</a>
-              <a class="dropdown-item" href="#">Delete Team</a>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'teams:team_list' %}">Teams</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="{% url 'player:player_list' %}">Players</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <a class="nav-link" href="{% url 'match:match_list' %}">Matches</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Stats</a>
           </li>
         </ul>
     </nav>
